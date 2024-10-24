@@ -1,0 +1,76 @@
+.a_hover a:hover{
+    color: #ffc107 !important;
+}
+
+::ng-deep.header{
+    background-color: #212529 !important;
+}
+::ng-deep.bg-dark{
+    background-color: #212529 !important;
+}
+
+@media only screen and (max-width: 991px) {
+    ul.navbar-nav{
+        background: #313030;
+        padding: 15px;
+    }
+    .navbar-toggler:focus{
+        box-shadow: none;
+    }
+}
+
+
+
+
+/* THIS IS FOR MOBILE VIEW MENU */
+
+
+
+/* Style the navigation menu */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinksMenuToggleCustom {
+  display: none;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: black;
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Add a grey background color on mouse-over */
+.topnav a:hover {
+  background-color: #959797;
+  color: black;
+}
+
+/* Style the active link (or home/logo) */
+.activeHeader {
+  background-color: #2b3035;
+  color: white;
+}
+
+/* .hamburger-part {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+} */

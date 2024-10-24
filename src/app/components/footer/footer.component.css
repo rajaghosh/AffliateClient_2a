@@ -1,0 +1,20 @@
+@media only screen and (max-width: 767px) {
+    .mob-txt{
+        text-align: center;
+        justify-content: center;
+    }
+    ul.mob_ul{
+        justify-content: center !important;
+    }
+    ul.mob_ul li{
+        margin: 0 5px !important;
+        text-align: center;
+    }
+
+    ul.mob_ul li a{
+        text-align: center;
+    }
+}
+::ng-deep.footer{
+    background-color: #212529 !important;
+}

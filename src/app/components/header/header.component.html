@@ -1,0 +1,83 @@
+<header class="pt-3 pb-3 p-sm-3 text-bg-dark shadow-lg header">
+
+    <nav class="navbar navbar-expand-lg bg-dark bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+
+            <!-- FOR DESKTOP VIEW -->
+            <div class="collapse navbar-collapse align-items-left" id="navbarSupportedContent">
+                <a routerlink="/" class="navbar-brand">
+                    Dr.Stella MD Affliate
+                </a>
+
+                <ul class="navbar-nav me-auto mb-4 mt-2 mt-lg-0 mb-lg-0" *ngIf="isLoggedIn">
+
+                    <li class="nav-item">
+                        <a [routerLink]="['manage-user']" routerLinkActive="active" class="nav-link"
+                            *ngIf="isAdmin && isLoggedIn">User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['manage-product']" routerLinkActive="active" class="nav-link"
+                            *ngIf="isLoggedIn">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['dashboard']" routerLinkActive="active" class="nav-link"
+                            *ngIf="isLoggedIn">Dashboard</a>
+                    </li>
+
+                </ul>
+
+                <div class="d-flex" *ngIf="isLoggedIn" style="padding-right: 10px;">
+                    <span class="pt-2 pb-0">Welcome, {{userName | titlecase}} </span>
+                </div>
+                <div class="d-flex" *ngIf="isLoggedIn">
+                    <button type="button" class="btn btn-warning" (click)="Logout()">Logout</button>
+                </div>
+
+            </div>
+
+            <!-- FOR MOB VIEW -->
+            <div class="topnav navbar-toggler" style="width: 100%; background-color: #2b3035 !important;">
+                <a routerlink="/" class="activeHeader">Dr.Stella MD Affliate</a>
+
+                <!-- Navigation links (hidden by default) -->
+                <div id="myLinksMenuToggleCustom">
+                    <ul class="navbar-nav me-auto mb-4 mt-2 mt-lg-0 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a [routerLink]="['manage-user']" routerLinkActive="active" class="nav-link"
+                                *ngIf="isAdmin && isLoggedIn">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['manage-product']" routerLinkActive="active" class="nav-link"
+                                *ngIf="isLoggedIn">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['dashboard']" routerLinkActive="active" class="nav-link"
+                                *ngIf="isLoggedIn">Dashboard</a>
+                        </li>
+
+                    </ul>
+
+                    <div class="d-flex" *ngIf="isLoggedIn" class="row">
+                        <span class="pt-2 pb-0 col-6" style="padding-right: 5px; font-size: 15px;">Welcome, {{userName |
+                            titlecase}} </span>
+                        <span class="col-6 justify-content-end d-flex pb-2"><button type="button"
+                                class="btn btn-warning" (click)="Logout()">Logout</button></span>
+                    </div>
+
+                </div>
+                <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                <a routerlink="/javascript:void(0);" class="icon" onclick="MenuToggleCustom()" *ngIf="isLoggedIn"
+                    style="background-color: #2b3035 !important; color: white;">
+                    <img src="{{imageLoc}}menu-hamburger-white.svg" alt="" height="25px" width="25px">
+                </a>
+            </div>
+
+
+
+        </div>
+    </nav>
+
+
+
+</header>

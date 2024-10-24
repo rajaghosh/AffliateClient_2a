@@ -1,0 +1,150 @@
+<div class="container-fluid">
+
+    <div class="row" *ngIf="userNotLoggedIn">
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 offset-md-3 offset-lg-3 reg_div" *ngIf="!showLogin">
+
+            <form [formGroup]="registrationForm">
+
+                <div class="col-lg-8 col-md-12 col-sm-12 col-12 center-current-content register-portion-vertically-middle">
+                    <div class="row h-100 p-2 pb-4 pt-4 p-sm-5 bg-body-tertiary border rounded-3">
+
+                        <div class="pt-0">
+                            <h2>Registration</h2>
+                        </div>
+
+                        <mat-form-field appearance="fill" class="pt-3">
+                            <mat-label>Name<span style="color: red;"></span></mat-label><br />
+                            <input matInput maxlength="50" inputmode="text" placeholder="Type Name"
+                                formControlName="Name" #nameInput>
+
+                            <mat-error *ngIf="checkError('Name', 'required')">Name is
+                                required</mat-error>
+                            <mat-error *ngIf="checkError('Name', 'maxlength')">Name must
+                                not exceed 50 characters</mat-error>
+                        </mat-form-field>
+
+
+                        <mat-form-field appearance="fill" class="pt-3">
+                            <mat-label>Email<span style="color: red;"></span></mat-label><br />
+                            <input matInput maxlength="50" inputmode="email" placeholder="Type Email"
+                                formControlName="Email" #nameInput>
+
+                            <mat-error *ngIf="checkError('Email', 'required')">Email is
+                                required</mat-error>
+                            <mat-error *ngIf="checkError('Email', 'email')">Email address
+                                not proper</mat-error>
+                            <mat-error *ngIf="checkError('Email', 'maxlength')">Email must
+                                not exceed 50 characters</mat-error>
+                        </mat-form-field>
+
+
+                        <mat-form-field appearance="fill" class="pt-3">
+                            <mat-label>Password<span style="color: red;"></span></mat-label><br />
+                            <input matInput maxlength="15" inputmode="password" placeholder="Type Password"
+                                [type]="hide ? 'password' : 'text'" formControlName="Password" #nameInput>
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' :
+                                'visibility'}}</mat-icon>
+
+                            <mat-error *ngIf="checkError('Password', 'required')">Password is
+                                required</mat-error>
+                            <mat-error *ngIf="checkError('Password', 'minlength')">Password must
+                                not be less than 8 characters</mat-error>
+                            <mat-error *ngIf="checkError('Password', 'maxlength')">Password must
+                                not exceed 15 characters</mat-error>
+
+                        </mat-form-field>
+
+                        <div class="row pt-3">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-warning" type="submit" style="width: 100%;"
+                                    (click)="onRegistrationSubmit()">Submit</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="reset" class="btn btn-secondary" style="width: 100%;">Clear</button>
+                            </div>
+                        </div>
+
+                        <div class="row pt-3 mt-4">
+                            <div class="col-12">
+                                <a href="javascript:void(0)" (click)="toggleForms()">Already have an Account</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 offset-md-3 offset-lg-3 login_div" *ngIf="showLogin">
+
+            <form [formGroup]="loginForm">
+
+                <div class="col-lg-8 col-md-12 col-sm-12 col-12 center-current-content register-portion-vertically-middle">
+                    <div class="row h-100 p-2 pb-4 pt-4 p-sm-5 bg-body-tertiary border rounded-3">
+
+                        <div class="pt-0">
+                            <h2>Affiliate Login</h2>
+                        </div>
+
+                        <mat-form-field appearance="fill" class="pt-3">
+                            <mat-label>Email<span style="color: red;"></span></mat-label><br />
+                            <input matInput maxlength="50" inputmode="text" placeholder="Type Email"
+                                formControlName="Email" #nameInput>
+
+                            <mat-error *ngIf="checkErrorLogin('Email', 'required')">Email is
+                                required</mat-error>
+                            <mat-error *ngIf="checkErrorLogin('Email', 'email')">Email is
+                                required</mat-error>
+                            <mat-error *ngIf="checkErrorLogin('Email', 'maxlength')">Email must
+                                not exceed 50 characters</mat-error>
+                        </mat-form-field>
+
+
+                        <mat-form-field appearance="fill" class="pt-3">
+                            <mat-label>Password<span style="color: red;"></span></mat-label><br />
+                            <input matInput maxlength="15" inputmode="password" placeholder="Type Password"
+                                [type]="hideLogin ? 'password' : 'text'" formControlName="Password" #nameInput>
+                            <mat-icon matSuffix (click)="hideLogin = !hideLogin">{{hideLogin ? 'visibility_off' :
+                                'visibility'}}</mat-icon>
+
+                            <mat-error *ngIf="checkErrorLogin('Password', 'required')">Password is
+                                required</mat-error>
+                            <mat-error *ngIf="checkErrorLogin('Password', 'maxlength')">Password must
+                                not exceed 15 characters</mat-error>
+                            
+                        </mat-form-field>
+
+
+                        <div class="row pt-3">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-warning" type="submit" style="width: 100%;"
+                                    (click)="onLoginSubmit()">Submit</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="reset" class="btn btn-secondary" style="width: 100%;">Clear</button>
+                            </div>
+                        </div>
+
+                        <div class="row pt-3 mt-4">
+                            <div class="col-12">
+                                <a href="javascript:void(0)" (click)="toggleForms()">Create an Affiliate account</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+</div>

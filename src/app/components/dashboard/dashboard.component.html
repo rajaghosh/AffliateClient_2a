@@ -1,0 +1,151 @@
+<div class="container mt-5 mb-5" style="min-height: 650px;">
+
+    <div class="row mb-2">
+        <span
+            class="pt-0 pb-0 text-xs font-weight-bold text-primary text-uppercase mb-1">&nbsp;&nbsp;{{ofAllUser}}</span>
+    </div>
+    <div class="row mb-4">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Earnings (Last 1 month)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{lastMonthSale.toFixed(2)}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Earnings (Lifetime)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{lifetimeSale.toFixed(2)}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Orders (Last 1 month)
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                        {{lastMonthOrder.toFixed(0)}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Orders (Lifetime)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{lifetimeOrder.toFixed(0)}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="searchReportForm" (ngSubmit)="getSaleReportDetails()" style="width: 100%">
+        <div class="row" style="margin-top: 2px;">
+            <div class="col-md-3 d-flex align-items-center">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Selected Affiliate</mat-label><br/>
+                    <mat-select formControlName="affiliate">
+                        <mat-option *ngFor="let item of affiliateList" [value]="item.email">{{item.name |
+                            titlecase}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 d-flex align-items-center">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Report Type</mat-label><br/>
+                    <mat-select formControlName="reportType">
+                        <mat-option *ngFor="let item of reportTypeList" [value]="item.id">{{item.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+              <div class="col-md-2 d-flex align-items-center">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>Start Data</mat-label><br/>
+                    <input matInput [matDatepicker]="pickerStartDateControl" formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="pickerStartDateControl">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerStartDateControl></mat-datepicker>
+                    <!-- <mat-error *ngIf="checkError('PatientDob', 'required')">Patient Date of Birth is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                    <mat-label>End Data</mat-label><br/>
+                    <input matInput [matDatepicker]="pickerEndtDateControl" formControlName="endDate">
+                    <mat-datepicker-toggle matSuffix [for]="pickerEndtDateControl">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerEndtDateControl></mat-datepicker>
+                    <!-- <mat-error *ngIf="checkError('PatientDob', 'required')">Patient Date of Birth is required</mat-error> -->
+                </mat-form-field>
+            </div>
+            <div class="col-md-2 mb-4 justify-content-end d-flex" style="margin-top: 2px; margin-bottom: 2px;">
+                <button mat-raised-button color="primary" type="submit" style="width: 100%; height: 100%;"
+                    [disabled]="!searchReportForm.valid">Search</button>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-12 mb-4">
+            <div class="card p-3 border-2">
+                <canvas baseChart class="chart" [data]="lineChartData" [options]="lineChartOptions"
+                    [type]="lineChartType" (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+                <span class="justify-content-center d-flex">Total Count</span>
+            </div>
+            <!-- <div class="card p-3 border-2"> -->
+                
+            <!-- </div> -->
+
+        </div>
+        <div class="col-md-6 col-sm-12 col-12 mb-4">
+            <div class="card p-3 border-2">
+                <canvas baseChart class="chart" [data]="barChartData" [options]="barChartOptions" [type]="barChartType"
+                    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                </canvas>
+                <span class="justify-content-center d-flex">Product Sale</span>
+            </div>
+            <!-- <div class="card p-3 border-2"> -->
+                
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+</div>

@@ -1,0 +1,29 @@
+.mat-column-id {
+    width: 20%;
+}
+.mat-column-name {
+    width: 30%;
+}
+.mat-column-email {
+    width: 30%;
+}
+.mat-column-isActive {
+    width: 20%;
+}
+
+.responsive_table{
+    overflow-y: auto;
+    padding-bottom: 50px;;
+}
+
+::ng-deep.mat-mdc-paginator-container .mat-mdc-paginator-page-size{
+    align-items: center;
+}
+
+::ng-deep.mat-mdc-paginator .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix{
+    padding-top: 8px !important;
+}
+
+@media only screen and (max-width: 574px) {
+    ::ng-deep.mat-mdc-paginator-range-label{margin: 0 !important;}
+}
